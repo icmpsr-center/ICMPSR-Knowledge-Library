@@ -1,0 +1,46 @@
+name: Validate Offline Library PWA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "offline-library-addon.js"
+      - "sw.js"
+      - "manifest.webmanifest"
+      - "icon.svg"
+      - ".github/workflows/validate-offline-pwa.yml"
+  push:
+    branches: ["feature/offline-library-pwa"]
+    paths:
+      - "offline-library-addon.js"
+      - "sw.js"
+      - "manifest.webmanifest"
+      - "icon.svg"
+      - ".github/workflows/validate-offline-pwa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: |
+          node --check offline-library-addon.js
+          node --check sw.js
+      - name: Validate PWA manifest
+        run: |
+          python -m json.tool manifest.webmanifest > /dev/null
+          test -s icon.svg
+      - name: Check required offline features
+        run: |
+          grep -q "indexedDB.open" offline-library-addon.js
+          grep -q "navigator.serviceWorker.register" offline-library-addon.js
+          grep -q "knowledge_document_chunks" offline-library-addon.js
+          grep -q "request.mode === 'navigate'" sw.js
+          ! grep -Eq "service_role|GEMINI_API_KEY|OPENAI_API_KEY" offline-library-addon.js sw.js
