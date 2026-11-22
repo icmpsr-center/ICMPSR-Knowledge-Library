@@ -187,7 +187,7 @@
     const safe = esc(value);
     const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))];
     if (!keywords.length) return safe;
-    const escaped = keywords.map(term => term.replace(/[.*+?^${}()|[\\]\\]/g, '\\const escaped = keywords.map(term => term.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&'));'));
+    const escaped = keywords.map(term => term.split('').map(ch => '\\^$.*+?()[]{}|'.includes(ch) ? '\\' + ch : ch).join(''));
     const pattern = new RegExp('(' + escaped.join('|') + ')', 'giu');
     return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
   }
