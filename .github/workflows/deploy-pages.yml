@@ -1,0 +1,52 @@
+name: Deploy Knowledge Library to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "source-bundle.zip.b64"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore packaged application
+        run: |
+          base64 --decode source-bundle.zip.b64 > /tmp/knowledge-library.zip
+          mkdir -p /tmp/knowledge-library public
+          unzip -q /tmp/knowledge-library.zip -d /tmp/knowledge-library
+          cp /tmp/knowledge-library/knowledge-library.html public/index.html
+          cp /tmp/knowledge-library/README.md public/README.md
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
