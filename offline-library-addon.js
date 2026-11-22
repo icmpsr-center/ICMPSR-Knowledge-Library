@@ -187,7 +187,7 @@
     const safe = esc(value);
     const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))];
     if (!keywords.length) return safe;
-    const escaped = keywords.map(term => term.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&'));
+    const escaped = keywords.map(term => term.replace(/[.*+?^${}()|[\\]\\]/g, '\\const escaped = keywords.map(term => term.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&'));'));
     const pattern = new RegExp('(' + escaped.join('|') + ')', 'giu');
     return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
   }
@@ -215,7 +215,8 @@
   }
 
   function renderOfflineHit(hit, terms) {
-    const fullText = String(hit.content || '');\n    const preview = fullText.slice(0, 900);\n    const remainder = fullText.slice(900);\n    const page = hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '';\n    return '<article class="doc offline-result"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +\n      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + page +\n      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div>' +\n      '<p class="offline-excerpt">' + highlightKeywords(preview, terms) + '</p>' +\n      (remainder ? '<details class="offline-full-text"><summary>قراءة بقية المقطع (' + remainder.length + ' حرف إضافي)</summary><p>' + highlightKeywords(remainder, terms) + '</p></details>' : '') +\n      '</article>';\n  }\n\n  async function searchOffline() {
+    const fullText = String(hit.content || '');
+    const preview = fullText.slice(0, 900);\n    const remainder = fullText.slice(900);\n    const page = hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '';\n    return '<article class="doc offline-result"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +\n      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + page +\n      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div>' +\n      '<p class="offline-excerpt">' + highlightKeywords(preview, terms) + '</p>' +\n      (remainder ? '<details class="offline-full-text"><summary>قراءة بقية المقطع (' + remainder.length + ' حرف إضافي)</summary><p>' + highlightKeywords(remainder, terms) + '</p></details>' : '') +\n      '</article>';\n  }\n\n  async function searchOffline() {
     const query = normalize($('offlineSearchInput').value);
     const resultBox = $('offlineSearchResults');
     if (!query) { resultBox.innerHTML = '<div class="empty">اكتب كلمة أو عبارة للبحث في المراجع المحفوظة.</div>'; return; }
