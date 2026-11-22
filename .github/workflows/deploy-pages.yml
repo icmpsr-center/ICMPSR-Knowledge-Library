@@ -1,6 +1,11 @@
 name: Deploy Knowledge Library to GitHub Pages
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "offline-library-addon.js"
+      - ".github/workflows/deploy-pages.yml"
   push:
     branches: [main]
     paths:
@@ -44,6 +49,9 @@ jobs:
           sed -i 's#</head>#<link rel="manifest" href="./manifest.webmanifest"></head>#' public/index.html
           sed -i 's#</body>#<script src="archive-addon.js"></script><script src="password-recovery-addon.js"></script><script src="offline-library-addon.js"></script></body>#' public/index.html
 
+      - name: Validate JavaScript syntax
+        run: node --check public/offline-library-addon.js
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -53,6 +61,7 @@ jobs:
           path: public
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
