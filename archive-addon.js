@@ -3,7 +3,7 @@
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function install(){
-    if(!window.db || typeof loadDocs !== 'function' || !user || !centralLib) return false;
+    if(typeof db === 'undefined' || typeof loadDocs !== 'function' || !user || !centralLib) return false;
     const tabs=document.querySelector('.tabs'); if(!tabs) return false;
     if(!document.querySelector('[data-view="archive"]')){
       const b=document.createElement('button'); b.className='tab'; b.dataset.view='archive'; b.textContent='الأرشيف';
