@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b46"><title>ICMPSR | بوابة المدرب</title>
+<style>
+:root{--navy:#102b46;--blue:#176b91;--gold:#d5a642;--ink:#203044;--muted:#718096;--bg:#f3f6fa;--card:#fff;--line:#e3eaf1;--green:#16845b;--red:#b54747;--shadow:0 8px 28px #16324b0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.65}button,input,textarea,select{font:inherit}button{cursor:pointer}.app{max-width:1500px;margin:auto;min-height:100vh}.top{background:linear-gradient(115deg,#102b46,#174c6b);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border:2px solid #d5a642;border-radius:13px;display:grid;place-items:center;font-weight:bold;color:#f3cc75}.brand h1{font-size:18px;margin:0}.brand small{color:#c9d9e6}.user{display:flex;align-items:center;gap:10px}.avatar{width:40px;height:40px;border-radius:50%;background:#e8bd63;color:#102b46;display:grid;place-items:center;font-weight:bold}.layout{display:grid;grid-template-columns:1fr;gap:20px;padding:20px 20px 112px}.side{display:none}.side h3{font-size:13px;color:var(--muted);margin:4px 8px 12px}.nav{display:grid;gap:7px}.nav button{border:0;background:transparent;text-align:right;padding:11px 12px;border-radius:11px;color:#42566b;display:flex;gap:10px;align-items:center}.nav button:hover{background:#f1f6fa}.nav button.active{background:#e8f2f7;color:#105276;font-weight:bold;border-right:3px solid var(--gold)}.nav .ico{width:22px;text-align:center}.side-note{border-top:1px solid var(--line);margin-top:16px;padding:14px 8px 2px;color:var(--muted);font-size:12px}.main{min-width:0}.page{display:none}.page.active{display:block}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:4px 0 18px}.page-head h2{margin:0 0 4px;font-size:23px;color:var(--navy)}.page-head p{margin:0;color:var(--muted);font-size:13px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 15px;border-radius:10px;font-weight:600}.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}.btn.gold{background:var(--gold);border-color:var(--gold);color:#172c3e}.btn.soft{background:#edf5f8;color:#145477;border-color:#d7e8ef}.btn.danger{color:var(--red)}.btn:disabled{opacity:.45;cursor:not-allowed}.grid{display:grid;gap:15px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.stat{display:flex;justify-content:space-between;align-items:center}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;color:var(--navy);margin-top:5px}.stat .bubble{width:42px;height:42px;border-radius:13px;background:#edf4f8;display:grid;place-items:center;font-size:20px}.cols{grid-template-columns:1.3fr 1fr}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section-title h3{margin:0;color:var(--navy);font-size:16px}.muted{color:var(--muted)}.course-list{display:grid;gap:10px}.course{border:1px solid var(--line);border-radius:12px;padding:13px;display:flex;align-items:center;justify-content:space-between;gap:12px}.course h4{margin:0 0 4px;font-size:14px}.course small{color:var(--muted)}.tag{font-size:11px;padding:4px 8px;border-radius:20px;background:#edf5f8;color:#145477;white-space:nowrap}.tag.warn{background:#fff5df;color:#8c6515}.tag.ok{background:#e8f6ef;color:#14734e}.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.quick button{min-height:84px;text-align:right;border:1px solid var(--line);background:#fff;border-radius:13px;padding:13px;color:var(--navy);font-weight:bold}.quick button span{display:block;font-size:21px;margin-bottom:5px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:bold;color:#40566a}.field input,.field textarea,.field select{width:100%;border:1px solid #d8e1e9;border-radius:10px;padding:11px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field textarea:focus{border-color:#4c91b0;box-shadow:0 0 0 3px #4c91b01a}.field textarea{min-height:100px;resize:vertical}.hint{font-size:11px;color:var(--muted)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.notice{background:#fff8e9;border:1px solid #f1dfb6;padding:12px 14px;border-radius:11px;color:#73591f;font-size:12px;margin-bottom:14px}.success{background:#eaf7f0;border-color:#cbe9d8;color:#176b49}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tabs button{padding:8px 13px;border-radius:9px;border:1px solid var(--line);background:white;color:#486075}.tabs button.active{background:#e8f2f7;color:#145477;border-color:#c7dfe9}.lesson{border:1px solid var(--line);border-radius:12px;padding:13px;margin:9px 0;background:#fff}.lesson h4{margin:0 0 5px}.chat{height:330px;overflow:auto;background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}.msg{padding:10px 12px;border-radius:12px;max-width:88%;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.sources{max-width:92%;background:#fff;border:1px dashed #c9d7e2;align-self:flex-start;font-size:12px}.msg.error{background:#fff0ef;border:1px solid #f1c9c5;color:#8b2924;align-self:flex-start}.msg.bot{background:#fff;border:1px solid var(--line);align-self:flex-start}.msg.me{background:#e5f1f7;align-self:flex-end}.chatrow{display:flex;gap:8px;margin-top:10px}.chat-modes{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}.mode-btn{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:10px;padding:9px 12px;font:inherit;font-size:12px;cursor:pointer}.mode-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}.provider-select{border:1px solid var(--line);border-radius:9px;padding:8px;background:#fff;color:var(--navy);font:inherit;font-size:12px;max-width:100%}.chatrow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px}.preview{background:linear-gradient(130deg,#102b46,#216180);color:white;border-radius:16px;padding:24px;min-height:180px;display:flex;align-items:end;justify-content:space-between;gap:15px}.preview h2{font-size:24px;margin:0 0 8px}.preview p{color:#d5e4ed;margin:0}.preview .preview-avatar{width:86px;height:86px;border-radius:50%;background:#d9b45d;color:#18354d;display:grid;place-items:center;font-size:27px;border:4px solid #fff8}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #cbd7e1;border-radius:12px}.footer{color:#8a98a8;font-size:11px;text-align:center;padding:18px}.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr;padding:12px}.side{position:static;padding:12px}.nav{grid-template-columns:repeat(3,minmax(0,1fr))}.nav button{justify-content:center;text-align:center;font-size:12px;padding:9px 5px;flex-direction:column;gap:2px}.side h3,.side-note{display:none}.stats{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}}
+@media(max-width:520px){.top{padding:13px}.brand h1{font-size:15px}.brand small{font-size:10px}.user .who{display:none}.layout{padding:9px}.nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.nav button{font-size:10px}.page-head{align-items:center}.page-head h2{font-size:19px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.quick{grid-template-columns:1fr 1fr}.course{align-items:flex-start}.course .btn{padding:7px 9px;font-size:11px}}
+
+.bottom-nav-wrap{position:fixed;z-index:1000;bottom:0;left:0;right:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(16px);border-top:1px solid #dfe7ee;box-shadow:0 -8px 28px #16324b12}
+.bottom-nav{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.bottom-nav button{border:0;background:transparent;color:#68798a;border-radius:13px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;padding:5px 2px}
+.bottom-nav button .ico{font-size:21px;line-height:1.2}
+.bottom-nav button.active{background:#eaf3f7;color:#105276;font-weight:bold}
+.bottom-nav button.active .ico{color:#c3922e}
+.more-menu{display:none;position:fixed;z-index:1001;bottom:82px;left:12px;right:12px;max-width:420px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:17px;padding:9px;box-shadow:0 12px 36px #102b4626;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.more-menu.open{display:grid}
+.more-menu button{border:0;background:#f5f8fa;border-radius:11px;padding:12px;color:var(--navy);text-align:right;display:flex;align-items:center;gap:9px}
+.more-menu button.active{background:#e8f2f7;color:#105276;font-weight:bold}
+@media(min-width:901px){.layout{padding:24px 28px 118px}.bottom-nav-wrap{padding-top:9px}.bottom-nav button{min-height:62px;font-size:12px}.more-menu{bottom:92px}}
+@media(max-width:520px){.layout{padding:10px 9px 108px}.bottom-nav-wrap{padding-left:6px;padding-right:6px}.bottom-nav button{font-size:10px;min-height:56px}.bottom-nav button .ico{font-size:20px}.more-menu{bottom:76px}}
+ .component-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:12px 0}.component-grid .lesson{margin:0;padding:12px}.component-grid .tag{display:inline-block;margin-top:8px}\n</style></head>
+<body>
+<div id="authOverlay" style="display:none;position:fixed;inset:0;z-index:3000;background:#102b46ee;align-items:center;justify-content:center;padding:18px">
+  <form id="authForm" class="card" style="width:min(100%,430px);padding:24px" onsubmit="signInTrainer(event)">
+    <div style="text-align:center;margin-bottom:18px"><div class="logo" style="margin:auto;background:#102b46">IC</div><h2 style="color:var(--navy);margin:12px 0 4px">تسجيل دخول المدرب</h2><p class="muted" style="margin:0;font-size:13px">سجّل الدخول بحسابك المعتمد للوصول إلى المساعد العلمي</p></div>
+    <div class="field"><label for="authEmail">البريد الإلكتروني</label><input id="authEmail" type="email" autocomplete="username" required placeholder="name@example.com"></div>
+    <div class="field" style="margin-top:12px"><label for="authPassword">كلمة المرور</label><input id="authPassword" type="password" autocomplete="current-password" required placeholder="كلمة المرور"></div>
+    <div id="authError" class="notice" style="display:none;margin-top:12px"></div>
+    <button id="authSubmit" class="btn primary" type="submit" style="width:100%;margin-top:16px">تسجيل الدخول</button>
+    <p class="hint" style="text-align:center;margin:12px 0 0">يُستخدم حساب Supabase المعتمد للمنصة. لا تُرسل كلمة المرور لأي شخص.</p>
+  </form>
+</div>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">IC</div><div><h1>المركز الدولي للدراسات والأبحاث الطبية والصيدلانية</h1><small>قسم التدريب والتعليم المستمر · بوابة المدرب</small></div></div><div class="user"><div class="who"><b>حساب المدرب</b><br><small>مساحة إعداد المحتوى العلمي</small></div><div class="avatar">م</div><button id="signOutBtn" class="btn" type="button" style="display:none;padding:7px 10px;color:white;background:#ffffff18;border-color:#ffffff55" onclick="signOutTrainer()">خروج</button></div></header>
+<div class="layout"><aside class="side"><h3>القائمة الرئيسية</h3><nav class="nav" id="nav">
+<button class="active" data-page="home"><span class="ico">⌂</span>الرئيسية</button><button data-page="courses"><span class="ico">▤</span>دوراتي</button><button data-page="create"><span class="ico">＋</span>إنشاء دورة</button><button data-page="builder"><span class="ico">✎</span>بناء المحتوى</button><button data-page="library"><span class="ico">▣</span>المكتبة العلمية</button><button data-page="assistant"><span class="ico">✧</span>المساعد الذكي</button><button data-page="announcement"><span class="ico">▧</span>إعلان الدورة</button><button data-page="review"><span class="ico">✓</span>المراجعة والاعتماد</button>
+</nav><div class="side-note">يتم حفظ المسودات محليًا على هذا الجهاز في هذه النسخة التجريبية.</div></aside>
+<main class="main">
+<section class="page active" id="home"><div class="page-head"><div><h2>مرحبًا بك في بوابة المدرب</h2><p>أنشئ دوراتك العلمية، جهّز محتواها، ثم أرسلها للمراجعة والاعتماد.</p></div><button class="btn primary" onclick="go('create')">＋ إنشاء دورة جديدة</button></div>
+<div class="grid stats"><div class="card stat"><div><small>إجمالي الدورات</small><strong id="statTotal">0</strong></div><div class="bubble">▤</div></div><div class="card stat"><div><small>مسودات</small><strong id="statDraft">0</strong></div><div class="bubble">✎</div></div><div class="card stat"><div><small>قيد المراجعة</small><strong id="statReview">0</strong></div><div class="bubble">◷</div></div><div class="card stat"><div><small>معتمدة</small><strong id="statApproved">0</strong></div><div class="bubble">✓</div></div></div>
+<div class="grid cols"><div class="card"><div class="section-title"><h3>آخر الدورات</h3><button class="btn soft" onclick="go('courses')">عرض الكل</button></div><div id="recent" class="course-list"><div class="empty">لم تُنشأ دورات بعد. ابدأ بإنشاء دورتك الأولى.</div></div></div><div class="card"><div class="section-title"><h3>اختصارات العمل</h3></div><div class="quick"><button onclick="go('create')"><span>＋</span>إنشاء دورة</button><button onclick="go('builder')"><span>▤</span>بناء الوحدات والدروس</button><button onclick="go('assistant')"><span>✧</span>محادثة المساعد</button><button onclick="go('announcement')"><span>▧</span>تصميم إعلان الدورة</button></div></div></div>
+</section>
+<section class="page" id="courses"><div class="page-head"><div><h2>دوراتي التدريبية</h2><p>إدارة الدورات والمسودات ومتابعة حالة كل دورة.</p></div><button class="btn primary" onclick="go('create')">＋ دورة جديدة</button></div><div class="card"><div id="allCourses" class="course-list"><div class="empty">لا توجد دورات محفوظة حتى الآن.</div></div></div></section>
+<section class="page" id="create"><div class="page-head"><div><h2>إنشاء دورة تدريبية</h2><p>أدخل البيانات الأساسية أو ابدأ من عنوان الموضوع لبناء هيكل أولي.</p></div></div><div class="notice">المحتوى الذي ينشئه النظام في هذه النسخة هو هيكل أولي قابل للتحرير، وليس اعتمادًا علميًا أو توليدًا متصلًا بخدمة ذكاء اصطناعي.</div><div class="card"><div class="form-grid">
+<div class="field full"><label>عنوان الدورة</label><input id="courseTitle" placeholder="مثال: أساسيات الصيدلة السريرية"></div>
+<div class="field"><label>التخصص</label><select id="courseSpecialty"><option>الطب</option><option>الصيدلة</option><option>التمريض</option><option>المختبرات الطبية</option><option>التغذية العلاجية</option><option>الإدارة الصحية</option><option>أخرى</option></select></div>
+<div class="field"><label>الفئة المستهدفة</label><input id="courseAudience" placeholder="الأطباء والصيادلة والطلاب"></div>
+<div class="field"><label>عدد الساعات</label><input id="courseHours" type="number" min="1" placeholder="12"></div>
+<div class="field"><label>لغة الدورة</label><select id="courseLang"><option>العربية</option><option>الإنجليزية</option><option>العربية والإنجليزية</option></select></div>
+<div class="field full"><label>وصف الدورة</label><textarea id="courseDescription" placeholder="نبذة مختصرة عن الدورة ومحتواها..."></textarea></div>
+<div class="field full"><label>مصادر المادة العلمية (اختياري)</label><input id="sourceFiles" type="file" multiple accept=".pdf,.docx,.pptx,.html,.htm,.jpg,.jpeg,.png"><span class="hint">يدعم النظام PDF وWord (DOCX) وPowerPoint (PPTX) وHTML والصور. يستخرج النص ثم يقترح توزيعًا أوليًا للمحتوى دون تغيير النص الأصلي.</span><div id="fileNames" class="hint"></div><div id="extractStatus" class="notice" style="display:none;margin-top:10px"></div></div>
+</div><div class="actions"><button class="btn primary" onclick="createCourse()">حفظ الدورة وإنشاء الهيكل</button><button class="btn" onclick="clearCreate()">مسح الحقول</button></div></div></section>
+<section class="page" id="builder"><div class="page-head"><div><h2>استوديو بناء المحتوى</h2><p>إعداد مكونات الدورة ومعاينتها قبل إرسالها للمراجعة.</p></div><select id="builderCourse" class="btn" onchange="loadBuilder()"><option value="">اختر دورة</option></select></div><div id="builderArea"><div class="empty">أنشئ دورة أولًا ثم اخترها لبدء تحرير المحتوى.</div></div></section>
+<section class="page" id="library"><div class="page-head"><div><h2>المكتبة العلمية</h2><p>تنظيم المراجع والمواد العلمية المستخدمة في إعداد الدورات.</p></div></div><div class="card"><div class="notice">المكتبة المركزية ومكتبة المدرب ستُربطان بقاعدة البيانات في مرحلة التكامل. هذه مساحة تجريبية لحفظ قائمة المراجع على الجهاز.</div><div class="form-grid"><div class="field"><label>عنوان المرجع</label><input id="refTitle" placeholder="اسم الكتاب أو المقال"></div><div class="field"><label>الرابط أو بيانات النشر</label><input id="refUrl" placeholder="DOI أو رابط أو بيانات المرجع"></div></div><div class="actions"><button class="btn primary" onclick="addReference()">إضافة مرجع</button></div><div id="refs" class="course-list" style="margin-top:14px"></div></div></section>
+<section class="page" id="assistant"><div class="page-head"><div><h2>المساعد العلمي</h2><p>واجهة محادثة مخصصة للاستفادة من محتوى المكتبة العلمية.</p></div></div><div class="card"><div id="assistantStatus" class="notice success">المساعد العلمي متصل بخدمة المنصة. تُسترجع الإجابات من المكتبة العلمية المعتمدة فقط.</div><div class="chat" id="chat"><div class="msg bot">مرحبًا. أستطيع في النسخة المتكاملة البحث داخل مكتبة المركز والإجابة مع إظهار المرجع. أرسل سؤالًا لتجربة واجهة المحادثة.</div></div><div class="chat-modes" role="group" aria-label="طريقة البحث">
+  <button type="button" id="libraryModeBtn" class="mode-btn active" onclick="setChatMode('library')">البحث في المكتبة المعرفية</button>
+  <button type="button" id="internetModeBtn" class="mode-btn" onclick="setChatMode('internet')">البحث في الإنترنت</button>
+  <select id="internetProvider" class="provider-select" aria-label="محرك البحث" style="display:none">
+    <option value="auto">Gemini ثم ChatGPT تلقائيًا</option>
+    <option value="gemini">Gemini</option>
+    <option value="openai">ChatGPT (OpenAI)</option>
+  </select>
+</div>
+<div class="chatrow"><input id="chatInput" placeholder="اكتب سؤالك أو اطلب البحث في المكتبة..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">إرسال</button></div></div></section>
+<section class="page" id="announcement"><div class="page-head"><div><h2>إعلان الدورة</h2><p>إعداد بطاقة تعريفية للدورة تتضمن صورة المدرب ومعلوماتها.</p></div></div><div class="card"><div class="form-grid"><div class="field"><label>اختر الدورة</label><select id="adCourse" onchange="renderAd()"><option value="">اختر دورة</option></select></div><div class="field"><label>اسم المدرب</label><input id="trainerName" value="اسم المدرب"></div><div class="field full"><label>الصورة الشخصية للمدرب</label><input id="trainerPhoto" type="file" accept="image/*" onchange="loadTrainerPhoto(event)"></div></div><div class="preview" style="margin-top:16px"><div><small>المركز الدولي للدراسات والأبحاث الطبية والصيدلانية</small><h2 id="adTitle">عنوان الدورة التدريبية</h2><p id="adMeta">التخصص · الساعات التدريبية</p><p id="adTrainer">تقديم: اسم المدرب</p></div><div class="preview-avatar" id="adAvatar">👨‍⚕️</div></div><div class="actions"><button class="btn primary" onclick="window.print()">طباعة / حفظ PDF</button></div></div></section>
+<section class="page" id="review"><div class="page-head"><div><h2>المراجعة والاعتماد</h2><p>متابعة حالة الدورة قبل إتاحتها للمتدربين.</p></div></div><div class="notice">مسار الاعتماد المستهدف: المدرب ← المشرف العلمي ← مدير التدريب ← المتدرب. الإرسال هنا يغير حالة المسودة محليًا فقط ولا يرسلها إلى مشرف فعلي قبل ربط الحسابات والصلاحيات.</div><div class="card"><div id="reviewList" class="course-list"><div class="empty">لا توجد دورات مرسلة للمراجعة.</div></div></div></section>
+</main></div>
+<div class="more-menu" id="moreMenu" aria-label="المزيد">
+<button data-page="library"><span class="ico">▣</span>المكتبة العلمية</button><button data-page="assistant"><span class="ico">✧</span>المساعد الذكي</button><button data-page="announcement"><span class="ico">▧</span>إعلان الدورة</button><button data-page="review"><span class="ico">✓</span>المراجعة والاعتماد</button>
+</div>
+<nav class="bottom-nav-wrap" aria-label="التنقل الرئيسي"><div class="bottom-nav">
+<button class="active" data-page="home"><span class="ico">⌂</span><span>الرئيسية</span></button>
+<button data-page="courses"><span class="ico">▤</span><span>دوراتي</span></button>
+<button data-page="create"><span class="ico">＋</span><span>إنشاء</span></button>
+<button data-page="builder"><span class="ico">✎</span><span>بناء الدورة</span></button>
+<button id="moreButton" type="button"><span class="ico">•••</span><span>المزيد</span></button>
+</div></nav>
+<div class="footer">ICMPSR · Integrated Training & Administration Platform · استيراد صفحة الدورة الأصلية كاملة مع المحافظة على جميع مكوناتها</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://hfosaegedytkugtwsqdb.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_7l8DEqgt7X7JoKeRb6JuyQ_tICU8uhR';
+const sbClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{
+  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+});
+let trainerSession=null;
+async function initTrainerAuth(){
+  const {data,error}=await sbClient.auth.getSession();
+  if(error)console.warn('Session check failed',error.message);
+  trainerSession=data?.session||null;
+  updateAuthView();
+  sbClient.auth.onAuthStateChange((_event,session)=>{trainerSession=session;updateAuthView()});
+}
+function updateAuthView(){
+  const overlay=$('authOverlay');
+  if(!overlay)return;
+  overlay.style.display=trainerSession?'none':'flex';
+  $('signOutBtn').style.display=trainerSession?'inline-flex':'none';
+  if(trainerSession?.user?.email){
+    const who=document.querySelector('.user .who');
+    if(who)who.textContent=trainerSession.user.email+' · حساب موثق';
+  }
+}
+async function signInTrainer(event){
+  event.preventDefault();
+  const btn=$('authSubmit'),err=$('authError');
+  btn.disabled=true;btn.textContent='جارٍ التحقق...';err.style.display='none';
+  const {data,error}=await sbClient.auth.signInWithPassword({
+    email:$('authEmail').value.trim(),password:$('authPassword').value
+  });
+  btn.disabled=false;btn.textContent='تسجيل الدخول';
+  if(error){err.textContent='تعذر تسجيل الدخول. تحقق من البريد الإلكتروني وكلمة المرور وحالة الحساب.';err.style.display='block';console.warn('Trainer sign-in failed',error.message);return}
+  trainerSession=data.session;updateAuthView();$('authPassword').value='';
+}
+async function signOutTrainer(){await sbClient.auth.signOut();trainerSession=null;updateAuthView()}
+const KEY='icmpsr_instructor_v3';let courses=JSON.parse(localStorage.getItem(KEY)||'[]');courses=courses.map(c=>({...c,sourceDocs:c.sourceDocs||[],extractionReport:c.extractionReport||[]}));let refs=JSON.parse(localStorage.getItem('icmpsr_refs_v1')||'[]');let activeCourse=null;let photoUrl='';
+const $=id=>document.getElementById(id);function save(){try{localStorage.setItem(KEY,JSON.stringify(courses));renderAll()}catch(e){alert('تعذر الحفظ في مساحة المتصفح المحلية. قلّل حجم الملفات المرفقة أو اربط المنصة بقاعدة البيانات قبل الاستخدام الفعلي.');console.error(e)}}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));$('moreMenu').classList.remove('open');if(id==='builder')fillCourseSelects();if(id==='announcement')fillCourseSelects();if(id==='review')renderReview();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+$('moreButton').addEventListener('click',()=> $('moreMenu').classList.toggle('open'));
+document.addEventListener('click',e=>{if(!$('moreMenu').contains(e.target)&&!$('moreButton').contains(e.target))$('moreMenu').classList.remove('open')});
+$('sourceFiles').addEventListener('change',async e=>{$('fileNames').textContent=[...e.target.files].map(f=>f.name).join(' · ');extractionPromise=prepareSourceFiles([...e.target.files])});
+let pendingExtractedDocs=[],pendingExtractedText='',pendingImportedHtml='',pendingExtractionReport=[],sourceFilesPrepared=false,extractionPromise=Promise.resolve();
+const CDN={pdf:'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',mammoth:'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js',jszip:'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',tesseract:'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'};
+function loadScriptOnce(src,test){return new Promise((resolve,reject)=>{if(test()){resolve();return}let old=[...document.scripts].find(x=>x.src===src);if(old){old.addEventListener('load',resolve,{once:true});old.addEventListener('error',reject,{once:true});return}let el=document.createElement('script');el.src=src;el.onload=resolve;el.onerror=()=>reject(new Error('تعذر تحميل مكتبة المعالجة'));document.head.appendChild(el)})}
+function cleanText(t){return String(t||'').replace(/\u00a0/g,' ').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim()}
+function extractHtmlStructure(raw,name){
+ const doc=new DOMParser().parseFromString(raw,'text/html');
+ doc.querySelectorAll('script,style,noscript,svg').forEach(x=>x.remove());
+ const title=doc.querySelector('h1,h2')?.textContent?.trim()||doc.title||name;
+ const sections=[...doc.querySelectorAll('section[id],main section,article')];
+ let chunks=[];
+ const moduleRoot=doc.querySelector('#modules-sec');
+ if(moduleRoot){
+   const moduleCards=[...moduleRoot.querySelectorAll('.module-card')];
+   if(moduleCards.length)chunks=moduleCards.map((el,i)=>({title:el.querySelector('.module-header h4,.module-header h3,h3,h4')?.textContent?.trim()||`الوحدة ${i+1}`,content:cleanText(el.querySelector('.module-body')?.innerText||el.querySelector('.module-body')?.textContent||el.innerText||el.textContent)}));
+ }
+ if(!chunks.length)chunks=sections.map((el,i)=>({title:el.querySelector('h1,h2,h3,h4')?.textContent?.trim()||`قسم ${i+1}`,content:cleanText(el.innerText||el.textContent)})).filter(x=>x.content.length>40);
+ const full=cleanText(doc.body?.innerText||doc.body?.textContent||'');
+ const sectionMap=[
+  ['objectives-sec','الأهداف التعليمية'],
+  ['video-sec','الفيديو التعليمي'],
+  ['mindmap-sec','الخريطة الذهنية'],
+  ['flashcards-sec','الفلاش كارد'],
+  ['modules-sec','الوحدات العلمية والدروس'],
+  ['clinical-drills-sec','التدريبات والحالات السريرية'],
+  ['quiz-sec','الاختبار والتصحيح'],
+  ['cert-sec','شهادة الإتمام']
+ ];
+ const sourceComponents=sectionMap.map(([id,label])=>({id,label,present:!!doc.getElementById(id)}));
+ const objectives=[...(doc.querySelector('#objectives-sec')?.querySelectorAll('li')||[])].map(x=>cleanText(x.innerText||x.textContent)).filter(Boolean);
+ return {title,text:full,modules:chunks,objectives,html:raw,htmlSections:sections.map(x=>x.id).filter(Boolean),sourceComponents};
+}
+async function extractPdf(file){
+ await loadScriptOnce(CDN.pdf,()=>!!window.pdfjsLib);
+ const lib=window.pdfjsLib;lib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+ const data=new Uint8Array(await file.arrayBuffer()),pdf=await lib.getDocument({data}).promise;let pages=[];
+ for(let n=1;n<=pdf.numPages;n++){const page=await pdf.getPage(n),tc=await page.getTextContent();pages.push(tc.items.map(x=>x.str).join(' '))}
+ return pages.map((x,i)=>`[صفحة ${i+1}]\n${x}`).join('\n\n');
+}
+async function extractDocx(file){
+ await loadScriptOnce(CDN.mammoth,()=>!!window.mammoth);
+ const buf=await file.arrayBuffer(),res=await window.mammoth.convertToHtml({arrayBuffer:buf});
+ const doc=new DOMParser().parseFromString(res.value,'text/html');
+ const blocks=[...doc.body.children].map(el=>({title:/^H[1-6]$/.test(el.tagName)?el.textContent.trim():'',content:cleanText(el.textContent),tag:el.tagName}));
+ return {text:cleanText(doc.body.innerText),blocks};
+}
+async function extractPptx(file){
+ await loadScriptOnce(CDN.jszip,()=>!!window.JSZip);
+ const zip=await window.JSZip.loadAsync(await file.arrayBuffer()),names=Object.keys(zip.files).filter(n=>/^ppt\/slides\/slide\d+\.xml$/.test(n)).sort((a,b)=>Number(a.match(/slide(\d+)/)[1])-Number(b.match(/slide(\d+)/)[1]));
+ let slides=[];
+ for(let i=0;i<names.length;i++){let xml=await zip.file(names[i]).async('text'),doc=new DOMParser().parseFromString(xml,'application/xml');slides.push(`[شريحة ${i+1}]\n${[...doc.getElementsByTagName('a:t')].map(x=>x.textContent).join(' ')}`)}
+ return slides.join('\n\n');
+}
+async function extractImage(file){
+ await loadScriptOnce(CDN.tesseract,()=>!!window.Tesseract);
+ const result=await window.Tesseract.recognize(file,'ara+eng',{logger:m=>{if(m.status==='recognizing text')$('extractStatus').textContent=`جارٍ التعرف الضوئي على النص: ${Math.round((m.progress||0)*100)}%`}});
+ return result.data.text||'';
+}
+function splitIntoModules(text){
+ const lines=cleanText(text).split(/\n+/).map(x=>x.trim()).filter(Boolean);
+ const heading=/^(?:الوحدة|الفصل|الباب|المحور|المحاضرة|الدرس|module|chapter|unit|lecture|lesson)\s*(?:رقم\s*)?([\d٠-٩IVX]+)?\s*[:：\-–.]?/i;
+ let groups=[],current={title:'المحتوى المستخرج',content:[]};
+ for(const line of lines){if(heading.test(line)&&current.content.length){groups.push(current);current={title:line,content:[]}}else if(heading.test(line)&&!current.content.length){current.title=line}else current.content.push(line)}
+ if(current.content.length||!groups.length)groups.push(current);
+ return groups.map(g=>({title:g.title,content:g.content.join('\n')})).filter(g=>g.content.trim().length>20);
+}
+function extractObjectives(text){
+ const lines=cleanText(text).split(/\n+/).map(x=>x.trim()).filter(Boolean),out=[];let active=false;
+ for(const line of lines){if(/الأهداف|مخرجات التعلم|learning outcomes|objectives/i.test(line)){active=true;continue}
+ if(active&&/^(?:الوحدة|الفصل|المحور|المحتويات|المراجع|المقدمة)/i.test(line))break;
+ if(active&&(/^(?:[-•*▪]|\d+[.)、-]|[٠-٩]+[.)、-])/.test(line)))out.push(line.replace(/^(?:[-•*▪]|\d+[.)、-]|[٠-٩]+[.)、-])\s*/,''));
+ }return out.slice(0,30);
+}
+async function extractOneFile(file){
+ const ext=file.name.split('.').pop().toLowerCase();
+ if(['html','htm'].includes(ext)){const raw=await file.text();return {name:file.name,type:'html',...extractHtmlStructure(raw,file.name)}}
+ if(ext==='pdf')return {name:file.name,type:'pdf',text:await extractPdf(file)};
+ if(ext==='docx'){const r=await extractDocx(file);return {name:file.name,type:'docx',...r}}
+ if(ext==='pptx')return {name:file.name,type:'pptx',text:await extractPptx(file)};
+ if(['png','jpg','jpeg'].includes(ext))return {name:file.name,type:'image',text:await extractImage(file)};
+ throw new Error(`صيغة غير مدعومة: ${file.name}`);
+}
+async function prepareSourceFiles(files){
+ pendingExtractedDocs=[];pendingExtractedText='';pendingImportedHtml='';pendingExtractionReport=[];sourceFilesPrepared=false;
+ const box=$('extractStatus');if(!files.length){box.style.display='none';return}
+ box.style.display='block';box.className='notice';box.textContent='جارٍ قراءة الملفات واستخراج النصوص...';
+ for(const file of files){try{const result=await extractOneFile(file);pendingExtractedDocs.push(result);if(result.text)pendingExtractedText+=`\n\n===== ${file.name} =====\n${result.text}`;
+ if(result.html){pendingImportedHtml=result.html;if(!$('courseTitle').value.trim())$('courseTitle').value=result.title;result.modules?.forEach(m=>pendingExtractionReport.push({file:file.name,title:m.title,chars:m.content.length}))}
+ else pendingExtractionReport.push({file:file.name,title:'تم استخراج النص',chars:(result.text||'').length});
+ }catch(err){pendingExtractionReport.push({file:file.name,error:err.message});}}
+ pendingExtractedText=cleanText(pendingExtractedText);sourceFilesPrepared=true;
+ box.className='notice';box.textContent=`اكتملت المعالجة: ${pendingExtractedDocs.length} ملف مقروء من ${files.length}. النص المستخرج: ${pendingExtractedText.length.toLocaleString('ar-EG')} حرف. ${pendingExtractionReport.some(x=>x.error)?'توجد ملفات تعذر قراءتها؛ راجع التقرير داخل بناء الدورة.':''}`;
+}
+async function createCourse(){
+ let title=$('courseTitle').value.trim();if(!title){alert('يرجى إدخال عنوان الدورة');$('courseTitle').focus();return}
+ const files=[...$('sourceFiles').files];await extractionPromise;if(files.length&&!sourceFilesPrepared)await prepareSourceFiles(files);
+ const htmlDoc=pendingExtractedDocs.find(d=>d.type==='html'&&d.html);
+ const sourceModules=pendingExtractedDocs.flatMap(d=>d.modules||[]);
+ let modules=sourceModules.length?sourceModules:splitIntoModules(pendingExtractedText);
+ let objectives=htmlDoc?.objectives?.length?htmlDoc.objectives:extractObjectives(pendingExtractedText);
+ let c={id:Date.now(),title,specialty:$('courseSpecialty').value,audience:$('courseAudience').value,hours:$('courseHours').value,lang:$('courseLang').value,description:$('courseDescription').value,files:files.map(f=>f.name),sourceDocs:pendingExtractedDocs,extractedText:pendingExtractedText,importedHtml:pendingImportedHtml,sourceComponents:htmlDoc?.sourceComponents||[],extractionReport:pendingExtractionReport,status:'مسودة',created:new Date().toLocaleDateString('ar-EG'),objectives,modules,cards:[],cases:[],questions:[],video:'',mindmap:'',sourcePreserved:true,coursePageMode:pendingImportedHtml?'source-html':'builder'};
+ courses.unshift(c);save();activeCourse=c.id;fillCourseSelects();$('builderCourse').value=c.id;go('builder');loadBuilder();
+ if(pendingImportedHtml)alert('تم استيراد صفحة HTML مع الاحتفاظ بنسختها الأصلية كاملة. افتح تبويب معاينة المتدرب لمشاهدة الصفحة المستوردة.');
+ else alert(`تم إنشاء هيكل الدورة من الملفات. استخرج النظام ${modules.length} وحدة/قسم و${objectives.length} هدفًا إن وُجدت. لم يتم إنشاء أسئلة أو معلومات علمية غير موجودة في المصدر.`);
+}
+function clearCreate(){['courseTitle','courseAudience','courseHours','courseDescription','sourceFiles'].forEach(id=>$(id).value='');$('fileNames').textContent='';pendingExtractedDocs=[];pendingExtractedText='';pendingImportedHtml='';pendingExtractionReport=[];sourceFilesPrepared=false;extractionPromise=Promise.resolve();$('extractStatus').style.display='none'}
+function fillCourseSelects(){['builderCourse','adCourse'].forEach(id=>{let s=$(id),v=s.value;s.innerHTML='<option value="">اختر دورة</option>'+courses.map(c=>`<option value="${c.id}">${esc(c.title)}</option>`).join('');if(courses.some(c=>String(c.id)===v))s.value=v})}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function downloadImportedCourse(id){const c=courses.find(x=>x.id===id);if(!c?.importedHtml)return;const blob=new Blob([c.importedHtml],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(c.title||'ICMPSR-course').replace(/[\\/:*?"<>|]/g,'-')+'.html';a.click();URL.revokeObjectURL(url)}
+function openImportedCourse(id){
+ const c=courses.find(x=>x.id===id);if(!c?.importedHtml){alert('لا توجد صفحة HTML أصلية لهذه الدورة.');return}
+ const blob=new Blob([c.importedHtml],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);
+ const win=window.open(url,'_blank');
+ if(!win){alert('المتصفح منع فتح الصفحة. اسمح بالنوافذ المنبثقة ثم أعد المحاولة.');URL.revokeObjectURL(url);return}
+ setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+function renderAll(){let total=courses.length; $('statTotal').textContent=total;$('statDraft').textContent=courses.filter(c=>c.status==='مسودة').length;$('statReview').textContent=courses.filter(c=>c.status==='قيد المراجعة').length;$('statApproved').textContent=courses.filter(c=>c.status==='معتمدة').length;let html=courses.slice(0,5).map(courseRow).join('');$('recent').innerHTML=html||'<div class="empty">لم تُنشأ دورات بعد. ابدأ بإنشاء دورتك الأولى.</div>';$('allCourses').innerHTML=courses.map(courseRow).join('')||'<div class="empty">لا توجد دورات محفوظة حتى الآن.</div>';fillCourseSelects();renderReview();renderRefs()}
+function courseRow(c){return `<div class="course"><div><h4>${esc(c.title)}</h4><small>${esc(c.specialty)} · ${esc(c.hours||'—')} ساعة · ${esc(c.created)}</small></div><div style="display:flex;align-items:center;gap:8px"><span class="tag ${c.status==='معتمدة'?'ok':c.status==='قيد المراجعة'?'warn':''}">${c.status}</span><button class="btn soft" onclick="editCourse(${c.id})">فتح</button></div></div>`}
+function editCourse(id){activeCourse=id;fillCourseSelects();$('builderCourse').value=id;go('builder');loadBuilder()}
+function current(){return courses.find(c=>c.id===Number($('builderCourse').value))}
+function loadBuilder(){let c=current();if(!c){$('builderArea').innerHTML='<div class="empty">اختر دورة للبدء.</div>';return}activeCourse=c.id;$('builderArea').innerHTML=`<div class="card"><div class="section-title"><div><h3>${esc(c.title)}</h3><small class="muted">${esc(c.specialty)} · ${esc(c.status)}</small></div><span class="tag">محرر الدورة</span></div><div class="tabs"><button class="active" onclick="builderTab('overview',this)">نظرة عامة</button><button onclick="builderTab('source',this)">المصادر المستخرجة</button><button onclick="builderTab('objectives',this)">الأهداف</button><button onclick="builderTab('modules',this)">الوحدات والدروس</button><button onclick="builderTab('interactive',this)">المكونات التفاعلية</button><button onclick="builderTab('preview',this)">معاينة المتدرب</button></div><div id="builderTabContent"></div><div class="actions"><button class="btn primary" onclick="submitReview(${c.id})">إرسال للمراجعة العلمية</button><button class="btn" onclick="saveBuilder()">حفظ التعديلات</button></div></div>`;builderTab('overview',document.querySelector('.tabs button'))}
+function builderTab(tab,btn){document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');let c=current();if(!c)return;let out='';if(tab==='overview')out=`<div class="form-grid"><div class="field full"><label>وصف الدورة</label><textarea id="bDesc">${esc(c.description||'')}</textarea></div><div class="field"><label>الفئة المستهدفة</label><input id="bAudience" value="${esc(c.audience||'')}"></div><div class="field"><label>الساعات</label><input id="bHours" type="number" value="${esc(c.hours||'')}"></div><div class="field full"><label>الملفات المصدرية</label><div class="hint">${(c.files||[]).map(esc).join(' · ')||'لم ترفق ملفات'}</div></div></div>`;if(tab==='source')out=`<div class="notice"><b>مبدأ حفظ المصدر:</b> النص الأصلي لا يُعاد صياغته تلقائيًا. التوزيع التالي اقتراح بنيوي قابل للتعديل، وتظل نسخة المصدر محفوظة.</div><h3>تقرير قراءة الملفات</h3>${(c.extractionReport||[]).map(r=>`<div class="lesson"><b>${esc(r.file)}</b><p>${r.error?`تعذر الاستخراج: ${esc(r.error)}`:`${esc(r.title)} · ${Number(r.chars||0).toLocaleString('ar-EG')} حرف`}</p></div>`).join('')||'<div class="empty">لا توجد ملفات مصدرية محفوظة.</div>'}${c.importedHtml?`<h3>مكونات الدورة الموجودة في الملف الأصلي</h3><div class="component-grid">${(c.sourceComponents||[]).map(x=>`<div class="lesson"><b>${esc(x.label)}</b><div class="tag ${x.present?'ok':''}">${x.present?'موجود في المصدر':'غير موجود في المصدر'}</div></div>`).join('')}</div><div class="notice">تم الاحتفاظ بصفحة HTML الأصلية كاملة بما فيها ملفات التنسيق والبرمجة التفاعلية. لا يتم استبدال الاختبارات أو البطاقات أو الخرائط بمحتوى افتراضي.</div><div class="actions"><button class="btn primary" onclick="openImportedCourse(${c.id})">فتح صفحة المتدرب كاملة</button><button class="btn" onclick="downloadImportedCourse(${c.id})">تنزيل صفحة الدورة الأصلية</button></div>`:''}<h3>النص المستخرج من المصدر</h3><textarea readonly style="min-height:260px">${esc(c.extractedText||'لم يتم استخراج نص.')}</textarea>`;
+ if(tab==='objectives')out=`<div class="field"><label>أضف هدفًا تعليميًا</label><div class="chatrow"><input id="newObjective" placeholder="بنهاية الدورة سيكون المتدرب قادرًا على..."><button class="btn primary" onclick="addItem('objectives','newObjective')">إضافة</button></div></div>${listItems(c.objectives,'objectives')}`;if(tab==='modules')out=`<div class="field"><label>عنوان الوحدة التعليمية</label><div class="chatrow"><input id="newModule" placeholder="الوحدة الأولى: مقدمة ومفاهيم أساسية"><button class="btn primary" onclick="addItem('modules','newModule')">إضافة وحدة</button></div></div>${(c.modules||[]).map((m,i)=>`<div class="lesson"><b>الوحدة ${i+1}: ${esc(m.title)}</b><div class="field" style="margin-top:8px"><label>محتوى الوحدة / الدرس</label><textarea id="moduleText${i}" placeholder="أدخل المحتوى العلمي مع المحافظة على النص الأصلي">${esc(m.content||'')}</textarea></div><button class="btn" onclick="saveModule(${i})">حفظ محتوى الوحدة</button> <button class="btn danger" onclick="removeModule(${i})">حذف الوحدة</button></div>`).join('')}`;if(tab==='interactive')out=`<div class="form-grid"><div class="field full"><label>رابط الفيديو التعليمي</label><input id="bVideo" value="${esc(c.video||'')}" placeholder="رابط الفيديو"></div><div class="field full"><label>الخريطة الذهنية / رابط أو وصف</label><textarea id="bMindmap">${esc(c.mindmap||'')}</textarea></div><div class="field full"><label>ملاحظات المكونات التفاعلية</label><div class="hint">يمكن إضافة بطاقات تعليمية وحالات سريرية واختبارات في مرحلة التوسعة. لا تُنشأ أسئلة علمية تلقائيًا دون مصدر ومراجعة.</div></div></div>`;if(tab==='preview')out=c.importedHtml?`<div class="notice"><b>معاينة المتدرب الأصلية:</b> هذه الصفحة هي ملفك نفسه كما رفعته، وليست إعادة تصميم أو فهرسة. كل أقسام المصدر وسلوكها التفاعلي محفوظة كما هي. للعرض الكامل افتحها في نافذة مستقلة.</div><div class="actions"><button class="btn primary" onclick="openImportedCourse(${c.id})">فتح صفحة المتدرب كاملة</button><button class="btn" onclick="downloadImportedCourse(${c.id})">تنزيل صفحة الدورة HTML</button></div><iframe title="معاينة صفحة الدورة الأصلية" sandbox="allow-scripts allow-forms allow-modals" srcdoc="${esc(c.importedHtml)}" style="display:block;width:100%;height:1600px;min-height:1600px;border:1px solid var(--line);border-radius:14px;background:white"></iframe>`:"" `<div class="preview"><div><small>ICMPSR · دورة تدريبية</small><h2>${esc(c.title)}</h2><p>${esc(c.description||'وصف الدورة يظهر هنا')}</p><p>${esc(c.specialty)} · ${esc(c.hours||'—')} ساعة · ${esc(c.audience||'الفئة المستهدفة')}</p></div><div class="preview-avatar">IC</div></div><h3>الأهداف التعليمية</h3>${listItems(c.objectives)}<h3>الوحدات</h3>${(c.modules||[]).map((m,i)=>`<div class="lesson"><b>${i+1}. ${esc(m.title)}</b><p>${esc(m.content||'لم يضف المحتوى بعد')}</p></div>`).join('')||'<div class="empty">لم تتم إضافة وحدات بعد.</div>'}<div class="notice">لم تُنشأ أسئلة أو حالات سريرية تلقائيًا؛ أضفها من المادة العلمية وراجعها علميًا قبل النشر.</div>`;$('builderTabContent').innerHTML=out}
+function listItems(arr){return arr?.length?'<ul>'+arr.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>':'<div class="empty">لا توجد عناصر مضافة بعد.</div>'}
+function addItem(key,input){let c=current(),v=$(input).value.trim();if(!v)return;c[key]=c[key]||[];c[key].push(key==='modules'?{title:v,content:''}:v);save();loadBuilder()}
+function saveModule(i){let c=current();c.modules[i].content=$('moduleText'+i).value;save();loadBuilder()}
+function removeModule(i){let c=current();if(confirm('حذف هذه الوحدة؟')){c.modules.splice(i,1);save();loadBuilder()}}
+function saveBuilder(){let c=current();if(!c)return;c.description=$('bDesc')?.value??c.description;c.audience=$('bAudience')?.value??c.audience;c.hours=$('bHours')?.value??c.hours;c.video=$('bVideo')?.value??c.video;c.mindmap=$('bMindmap')?.value??c.mindmap;save();alert('تم حفظ التعديلات على هذا الجهاز.')}
+function submitReview(id){let c=courses.find(x=>x.id===id);if(!c)return;if(!c.modules.length){alert('أضف وحدة تعليمية واحدة على الأقل قبل الإرسال.');return}if(!confirm('إرسال الدورة إلى مسار المراجعة العلمية؟'))return;c.status='قيد المراجعة';save();alert('تم تحديث حالة الدورة محليًا إلى: قيد المراجعة.')}
+function renderReview(){$('reviewList').innerHTML=courses.filter(c=>c.status==='قيد المراجعة'||c.status==='معتمدة').map(c=>`<div class="course"><div><h4>${esc(c.title)}</h4><small>${esc(c.specialty)} · ${c.modules.length} وحدة</small></div><span class="tag ${c.status==='معتمدة'?'ok':'warn'}">${c.status}</span></div>`).join('')||'<div class="empty">لا توجد دورات مرسلة للمراجعة.</div>'}
+function addReference(){let title=$('refTitle').value.trim(),url=$('refUrl').value.trim();if(!title){alert('أدخل عنوان المرجع');return}refs.unshift({title,url});localStorage.setItem('icmpsr_refs_v1',JSON.stringify(refs));$('refTitle').value='';$('refUrl').value='';renderRefs()}
+function renderRefs(){$('refs').innerHTML=refs.map((r,i)=>`<div class="course"><div><b>${esc(r.title)}</b><br><small>${esc(r.url)}</small></div><button class="btn danger" onclick="deleteRef(${i})">حذف</button></div>`).join('')||'<div class="empty">لم تضف مراجع بعد.</div>'}
+function deleteRef(i){refs.splice(i,1);localStorage.setItem('icmpsr_refs_v1',JSON.stringify(refs));renderRefs()}
+let chatMode='library';
+function setChatMode(mode){
+  chatMode=mode==='internet'?'internet':'library';
+  $('libraryModeBtn').classList.toggle('active',chatMode==='library');
+  $('internetModeBtn').classList.toggle('active',chatMode==='internet');
+  $('internetProvider').style.display=chatMode==='internet'?'block':'none';
+  $('chatInput').placeholder=chatMode==='internet'?'اكتب سؤالك للبحث في الإنترنت عبر Gemini أو ChatGPT...':'اكتب سؤالك للبحث في المكتبة المعرفية المعتمدة...';
+  $('assistantStatus').textContent=chatMode==='internet'
+    ?'وضع البحث في الإنترنت: سيبحث Gemini أو ChatGPT في الويب ويعرض المصادر المتاحة.'
+    :'وضع المكتبة المعرفية: الإجابات تعتمد على المراجع المعتمدة داخل مكتبة المركز فقط.';
+}
+async function sendChat(){
+  const input=$('chatInput'),v=input.value.trim();
+  if(!v)return;
+  if(!trainerSession){$('authOverlay').style.display='flex';return}
+  const chat=$('chat');
+  const userMsg=document.createElement('div');
+  userMsg.className='msg me';userMsg.textContent=v;chat.appendChild(userMsg);
+  input.value='';input.disabled=true;
+  const sendBtn=document.querySelector('.chatrow button');sendBtn.disabled=true;
+  const loading=document.createElement('div');
+  loading.className='msg bot';loading.textContent=chatMode==='internet'?'جارٍ البحث في الإنترنت وتجهيز الإجابة والمصادر...':'جارٍ البحث في المكتبة العلمية وإعداد الإجابة...';
+  chat.appendChild(loading);chat.scrollTop=chat.scrollHeight;
+  try{
+    const {data,error}=await sbClient.functions.invoke('knowledge-ask',{body:{question:v,mode:chatMode,provider:$('internetProvider').value}});
+    loading.remove();
+    if(error)throw error;
+    if(data?.error)throw new Error(data.error);
+    const answer=document.createElement('div');
+    answer.className='msg bot';answer.textContent=data?.answer||'لم تصل إجابة نصية من المساعد.';
+    chat.appendChild(answer);
+    if(Array.isArray(data?.sources)&&data.sources.length){
+      const refs=document.createElement('div');refs.className='msg sources';
+      const heading=document.createElement('b');heading.textContent=chatMode==='internet'?'مصادر الإنترنت':'المراجع ومواقع الاستشهاد';refs.appendChild(heading);
+      data.sources.forEach((src,i)=>{
+        const item=document.createElement('div');item.style.marginTop='8px';
+        const title=document.createElement('b');title.textContent=`[${i+1}] ${src.title||'مصدر'}`;
+        item.appendChild(title);
+        if(src.url){
+          const link=document.createElement('a');link.href=src.url;link.target='_blank';link.rel='noopener noreferrer';
+          link.textContent=src.url;link.style.display='block';link.style.direction='ltr';link.style.textAlign='left';link.style.overflowWrap='anywhere';item.appendChild(link);
+        }else{
+          const pages=document.createElement('div');pages.className='muted';
+          pages.textContent='الصفحات: '+(src.page_start??'غير محدد')+(src.page_end&&src.page_end!==src.page_start?' – '+src.page_end:'');
+          item.appendChild(pages);
+          if(src.section_title){const section=document.createElement('div');section.textContent='القسم: '+src.section_title;item.appendChild(section)}
+        }
+        refs.appendChild(item);
+      });
+      chat.appendChild(refs);
+    }
+    const provider=document.createElement('div');provider.className='hint';provider.style.alignSelf='flex-start';
+    provider.textContent='المحرك المستخدم: '+(data?.provider==='openai'?'ChatGPT (OpenAI)':'Gemini')+(chatMode==='internet'?' · بحث ويب':' · مكتبة المركز');
+    chat.appendChild(provider);
+  }catch(error){
+    loading.remove();
+    const fail=document.createElement('div');fail.className='msg error';
+    fail.textContent='تعذر تنفيذ الطلب: '+(error?.message||'خطأ غير معروف')+'. تأكد من تسجيل الدخول واتصال الخدمة ثم أعد المحاولة.';
+    chat.appendChild(fail);console.error('knowledge-ask failed',error);
+  }finally{
+    input.disabled=false;sendBtn.disabled=false;input.focus();chat.scrollTop=chat.scrollHeight;
+  }
+}
+function renderAd(){let c=courses.find(x=>x.id===Number($('adCourse').value));$('adTitle').textContent=c?.title||'عنوان الدورة التدريبية';$('adMeta').textContent=c?`${c.specialty} · ${c.hours||'—'} ساعة تدريبية`:'التخصص · الساعات التدريبية'}
+function loadTrainerPhoto(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{photoUrl=r.result;$('adAvatar').innerHTML=`<img src="${photoUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`};r.readAsDataURL(f)}
+$('trainerName').addEventListener('input',e=>$('adTrainer').textContent='تقديم: '+e.target.value);
+renderAll();
+initTrainerAuth();
+</script></body></html>
