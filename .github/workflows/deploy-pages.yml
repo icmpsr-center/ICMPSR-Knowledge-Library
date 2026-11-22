@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "source-bundle.zip.b64"
+      - "bundle-parts/**"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -24,9 +24,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Restore packaged application
+      - name: Rebuild packaged source
         run: |
-          base64 --decode source-bundle.zip.b64 > /tmp/knowledge-library.zip
+          cat bundle-parts/part-*.b64 > /tmp/source-bundle.zip.b64
+          base64 --decode /tmp/source-bundle.zip.b64 > /tmp/knowledge-library.zip
+          unzip -t /tmp/knowledge-library.zip
           mkdir -p /tmp/knowledge-library public
           unzip -q /tmp/knowledge-library.zip -d /tmp/knowledge-library
           cp /tmp/knowledge-library/knowledge-library.html public/index.html
