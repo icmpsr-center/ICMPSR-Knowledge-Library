@@ -183,6 +183,16 @@
       .replace(/[^\p{L}\p{N}\s]/gu, ' ').trim();
   }
 
+  function highlightKeywords(value, terms) {
+    const safe = esc(value);
+    const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))]
+      .sort((a, b) => b.length - a.length)
+      .map(term => term.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\  async function getAllFromStore(storeName) {'));
+    if (!keywords.length) return safe;
+    const pattern = new RegExp('(' + keywords.join('|') + ')', 'giu');
+    return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
+  }
+
   async function getAllFromStore(storeName) {
     const local = await openLocalDB();
     return new Promise((resolve, reject) => {
@@ -255,10 +265,10 @@
     }
 
     resultBox.innerHTML = hits.length ? hits.map(hit =>
-      '<article class="doc"><div class="doc-head"><div><h4>' + esc(hit.title) + '</h4><div class="muted">' +
-      esc(hit.section_title || 'مقطع من المرجع') + (hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '') +
+      '<article class="doc"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +
+      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + (hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '') +
       '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div><p style="white-space:pre-wrap;line-height:1.9">' +
-      esc(hit.content.slice(0, 900)) + '</p></article>'
+      highlightKeywords(hit.content.slice(0, 900), terms) + '</p></article>'
     ).join('') : '<div class="empty">لم نعثر على نتائج كافية الصلة. جرّب عبارة أدق أو كلمات أقل.</div>';
   }
 
@@ -273,6 +283,12 @@
       button.textContent = 'تنزيل للاستخدام دون إنترنت';
       toolbar.appendChild(button);
       button.addEventListener('click', downloadCurrentLibrary);
+    }
+    if (!$('offlineKeywordStyle')) {
+      const style = document.createElement('style');
+      style.id = 'offlineKeywordStyle';
+      style.textContent = '.offline-keyword{background:#ffe08a;color:#563900;padding:0 .16em;border-radius:.22em;font-weight:800;box-shadow:inset 0 -1px 0 #d3a53b}';
+      document.head.appendChild(style);
     }
     if (!$('offlinePanel')) {
       const panel = document.createElement('section');
