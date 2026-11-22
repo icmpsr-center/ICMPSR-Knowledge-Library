@@ -32,7 +32,6 @@ jobs:
           mkdir -p /tmp/knowledge-library public
           unzip -q /tmp/knowledge-library.zip -d /tmp/knowledge-library
           cp /tmp/knowledge-library/knowledge-library.html public/index.html
-          cp /tmp/knowledge-library/README.md public/README.md
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
