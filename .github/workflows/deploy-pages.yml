@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "bundle-parts/**"
+      - "archive-addon.js"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -32,6 +33,8 @@ jobs:
           mkdir -p /tmp/knowledge-library public
           unzip -q /tmp/knowledge-library.zip -d /tmp/knowledge-library
           cp /tmp/knowledge-library/knowledge-library.html public/index.html
+          cp archive-addon.js public/archive-addon.js
+          sed -i 's#</body>#<script src="archive-addon.js"></script></body>#' public/index.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
