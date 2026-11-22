@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   const DB_NAME = 'icmpsr-offline-library';
-  const DB_VERSION = 1;
+  const DB_VERSION = 2;
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   let idbPromise;
@@ -23,6 +23,9 @@
           const store = local.createObjectStore('documents', { keyPath: 'id' });
           store.createIndex('library_id', 'library_id', { unique: false });
         }
+        if (!local.objectStoreNames.contains('settings')) {
+          local.createObjectStore('settings', { keyPath: 'key' });
+        }
       };
       request.onsuccess = () => resolve(request.result);
       request.onerror = () => reject(request.error);
@@ -40,6 +43,45 @@
     if (!node) return;
     node.textContent = message;
     node.className = 'status ' + (kind || '');
+  }
+
+  async function saveSessionContext() {
+    if (!user || !centralLib) return;
+    const context = {
+      key: 'session-context',
+      user_id: user.id,
+      centralLib: { id: centralLib.id, library_type: centralLib.library_type },
+      privateLib: privateLib ? { id: privateLib.id, library_type: privateLib.library_type, owner_id: privateLib.owner_id } : null,
+      isAdmin: !!isAdmin,
+      isTrainer: !!isTrainer,
+      saved_at: new Date().toISOString()
+    };
+    await saveRows('settings', [context]);
+  }
+
+  async function restoreSessionContext() {
+    if (navigator.onLine || !user || centralLib) return false;
+    try {
+      const local = await openLocalDB();
+      const context = await new Promise((resolve, reject) => {
+        const request = local.transaction('settings', 'readonly').objectStore('settings').get('session-context');
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = () => reject(request.error);
+      });
+      if (!context || context.user_id !== user.id || !context.centralLib?.id) return false;
+      centralLib = context.centralLib;
+      privateLib = context.privateLib || null;
+      isAdmin = !!context.isAdmin;
+      isTrainer = !!context.isTrainer;
+      if ($('rolePill')) $('rolePill').textContent = isAdmin ? 'إدارة المركز' : isTrainer ? 'مدرب' : 'حساب موثق';
+      setMessage('تم فتح النسخة المحلية. بعض بيانات الحساب والإدارة تحتاج اتصالًا بالإنترنت؛ البحث المحلي متاح.', 'good');
+      installUI();
+      await updateLocalStats();
+      return true;
+    } catch (error) {
+      console.warn('Could not restore offline session context:', error);
+      return false;
+    }
   }
 
   async function saveRows(storeName, rows) {
@@ -256,6 +298,7 @@
     loadDocs = async function () {
       const result = await original.apply(this, arguments);
       installUI();
+      if (navigator.onLine) saveSessionContext().catch(error => console.warn('Offline context cache failed:', error));
       return result;
     };
     window.__icmpsrOfflineWrapped = true;
@@ -265,6 +308,7 @@
     if ($('app') && !$('app').classList.contains('hidden')) {
       wrapLoadDocs();
       installUI();
+      if (!navigator.onLine) restoreSessionContext();
     }
   });
   observer.observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class'] });
