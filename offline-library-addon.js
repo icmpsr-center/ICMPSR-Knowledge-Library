@@ -187,7 +187,8 @@
     const safe = esc(value);
     const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))];
     if (!keywords.length) return safe;
-    const pattern = new RegExp('(' + keywords.join('|') + ')', 'giu');
+    const escaped = keywords.map(term => term.split('').map(ch => '\\^$.*+?()[]{}|'.includes(ch) ? '\\' + ch : ch).join(''));
+    const pattern = new RegExp('(' + escaped.join('|') + ')', 'giu');
     return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
   }
 
@@ -211,6 +212,19 @@
       const stat = $('offlineLocalStats');
       if (stat) stat.textContent = 'محفوظ على هذا الجهاز: ' + docCount + ' مرجع / ' + count + ' مقطع';
     } catch (_) {}
+  }
+
+  function renderOfflineHit(hit, terms) {
+    const fullText = String(hit.content || '');
+    const preview = fullText.slice(0, 900);
+    const remainder = fullText.slice(900);
+    const page = hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '';
+    return '<article class="doc offline-result"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +
+      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + page +
+      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div>' +
+      '<p class="offline-excerpt">' + highlightKeywords(preview, terms) + '</p>' +
+      (remainder ? '<details class="offline-full-text"><summary>قراءة بقية المقطع (' + remainder.length + ' حرف إضافي)</summary><p>' + highlightKeywords(remainder, terms) + '</p></details>' : '') +
+      '</article>';
   }
 
   async function searchOffline() {
@@ -262,12 +276,7 @@
       if (hits.length === 15) break;
     }
 
-    resultBox.innerHTML = hits.length ? hits.map(hit =>
-      '<article class="doc"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +
-      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + (hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '') +
-      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div><p style="white-space:pre-wrap;line-height:1.9">' +
-      highlightKeywords(hit.content.slice(0, 900), terms) + '</p></article>'
-    ).join('') : '<div class="empty">لم نعثر على نتائج كافية الصلة. جرّب عبارة أدق أو كلمات أقل.</div>';
+    resultBox.innerHTML = hits.length ? hits.map(hit => renderOfflineHit(hit, terms)).join('') : '<div class="empty">لم نعثر على نتائج كافية الصلة. جرّب عبارة أدق أو كلمات أقل.</div>';
   }
 
   function installUI() {
@@ -285,7 +294,7 @@
     if (!$('offlineKeywordStyle')) {
       const style = document.createElement('style');
       style.id = 'offlineKeywordStyle';
-      style.textContent = '.offline-keyword{background:#ffe08a;color:#563900;padding:0 .16em;border-radius:.22em;font-weight:800;box-shadow:inset 0 -1px 0 #d3a53b}';
+      style.textContent = '.offline-keyword{background:#ffe08a!important;color:#563900!important;padding:0 .16em;border-radius:.22em;font-weight:800;box-shadow:inset 0 -1px 0 #d3a53b}.offline-result .offline-excerpt,.offline-result .offline-full-text p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9;max-height:none;overflow:visible}.offline-full-text{margin:10px 0;padding:10px 12px;border:1px solid #e3eaf0;border-radius:10px;background:#fbfdff}.offline-full-text summary{cursor:pointer;color:#16334a;font-weight:700;padding:4px}.offline-full-text[open] summary{margin-bottom:8px}';
       document.head.appendChild(style);
     }
     if (!$('offlinePanel')) {
