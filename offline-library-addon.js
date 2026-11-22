@@ -185,15 +185,7 @@
 
   function highlightKeywords(value, terms) {
     const safe = esc(value);
-    const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))]
-      .sort((a, b) => b.length - a.length)
-      .map(term => term.split('').map(ch => '\\^$.*+?()[]{}|'.includes(ch) ? '\\' + ch : ch).join(''));
-    if (!keywords.length) return safe;
-    const pattern = new RegExp('(' + keywords.join('|') + ')', 'giu');
-    return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
-  }
-
-  async function getAllFromStore(storeName) {'));
+    const keywords = [...new Set((terms || []).filter(term => term && term.length > 1))];
     if (!keywords.length) return safe;
     const pattern = new RegExp('(' + keywords.join('|') + ')', 'giu');
     return safe.replace(pattern, '<mark class="offline-keyword">$1</mark>');
