@@ -74,8 +74,8 @@
       isAdmin = !!context.isAdmin;
       isTrainer = !!context.isTrainer;
       if ($('rolePill')) $('rolePill').textContent = isAdmin ? 'إدارة المركز' : isTrainer ? 'مدرب' : 'حساب موثق';
-      setMessage('تم فتح النسخة المحلية. بعض بيانات الحساب والإدارة تحتاج اتصالًا بالإنترنت؛ البحث المحلي متاح.', 'good');
       installUI();
+      setMessage('تم فتح النسخة المحلية. بعض بيانات الحساب والإدارة تحتاج اتصالًا بالإنترنت؛ البحث المحلي متاح.', 'good');
       await updateLocalStats();
       return true;
     } catch (error) {
