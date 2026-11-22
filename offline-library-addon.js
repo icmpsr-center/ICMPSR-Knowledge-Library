@@ -216,7 +216,18 @@
 
   function renderOfflineHit(hit, terms) {
     const fullText = String(hit.content || '');
-    const preview = fullText.slice(0, 900);\n    const remainder = fullText.slice(900);\n    const page = hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '';\n    return '<article class="doc offline-result"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +\n      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + page +\n      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div>' +\n      '<p class="offline-excerpt">' + highlightKeywords(preview, terms) + '</p>' +\n      (remainder ? '<details class="offline-full-text"><summary>قراءة بقية المقطع (' + remainder.length + ' حرف إضافي)</summary><p>' + highlightKeywords(remainder, terms) + '</p></details>' : '') +\n      '</article>';\n  }\n\n  async function searchOffline() {
+    const preview = fullText.slice(0, 900);
+    const remainder = fullText.slice(900);
+    const page = hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '';
+    return '<article class="doc offline-result"><div class="doc-head"><div><h4>' + highlightKeywords(hit.title, terms) + '</h4><div class="muted">' +
+      highlightKeywords(hit.section_title || 'مقطع من المرجع', terms) + page +
+      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div>' +
+      '<p class="offline-excerpt">' + highlightKeywords(preview, terms) + '</p>' +
+      (remainder ? '<details class="offline-full-text"><summary>قراءة بقية المقطع (' + remainder.length + ' حرف إضافي)</summary><p>' + highlightKeywords(remainder, terms) + '</p></details>' : '') +
+      '</article>';
+  }
+
+  async function searchOffline() {
     const query = normalize($('offlineSearchInput').value);
     const resultBox = $('offlineSearchResults');
     if (!query) { resultBox.innerHTML = '<div class="empty">اكتب كلمة أو عبارة للبحث في المراجع المحفوظة.</div>'; return; }
