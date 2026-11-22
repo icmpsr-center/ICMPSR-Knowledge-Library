@@ -211,21 +211,55 @@
     if (!query) { resultBox.innerHTML = '<div class="empty">اكتب كلمة أو عبارة للبحث في المراجع المحفوظة.</div>'; return; }
     const library = activeLibrary();
     if (!library) { resultBox.textContent = 'اختر مكتبة صالحة أولًا.'; return; }
-    const terms = query.split(/\s+/).filter(Boolean);
-    const rows = await getAllFromStore('chunks');
-    const hits = rows.filter(row => row.library_id === library.id).map(row => {
-      const text = normalize(row.title + ' ' + row.section_title + ' ' + row.content);
-      let score = 0;
-      terms.forEach(term => { if (text.includes(term)) score += term.length > 3 ? 2 : 1; });
-      if (text.includes(query)) score += 5;
-      return { ...row, score };
-    }).filter(row => row.score > 0).sort((a, b) => b.score - a.score).slice(0, 30);
+
+    const stopWords = new Set(['the','and','for','with','from','that','this','are','was','were','في','من','على','الى','إلى','عن','ما','هو','هي','هذا','هذه','ذلك','ثم','او','أو','كل']);
+    const terms = [...new Set(query.split(/\s+/).filter(term => term.length > 1 && !stopWords.has(term)))];
+    const rows = (await getAllFromStore('chunks')).filter(row => row.library_id === library.id);
+    const scored = rows.map(row => {
+      const title = normalize(row.title);
+      const section = normalize(row.section_title);
+      const content = normalize(row.content);
+      const combined = title + ' ' + section + ' ' + content;
+      const matched = terms.filter(term => combined.includes(term));
+      if (!matched.length) return null;
+
+      const titleMatches = terms.filter(term => title.includes(term)).length;
+      const sectionMatches = terms.filter(term => section.includes(term)).length;
+      const contentMatches = terms.filter(term => content.includes(term)).length;
+      const phraseInTitle = query.length > 2 && title.includes(query);
+      const phraseInSection = query.length > 2 && section.includes(query);
+      const phraseInContent = query.length > 2 && content.includes(query);
+      const coverage = matched.length / Math.max(terms.length, 1);
+
+      let score = (titleMatches * 12) + (sectionMatches * 7) + (contentMatches * 2);
+      if (phraseInTitle) score += 30;
+      if (phraseInSection) score += 18;
+      if (phraseInContent) score += 12;
+      score += Math.round(coverage * 20);
+      if (coverage < 1) score -= (1 - coverage) * 25;
+      return { ...row, score, coverage, matchedCount: matched.length, normalizedContent: content };
+    }).filter(Boolean).sort((a, b) =>
+      b.score - a.score || b.coverage - a.coverage ||
+      String(a.title).localeCompare(String(b.title))
+    );
+
+    const seen = new Set();
+    const hits = [];
+    for (const hit of scored) {
+      const compact = hit.normalizedContent.replace(/\s+/g, ' ').slice(0, 500);
+      const signature = hit.document_id + ':' + compact;
+      if (seen.has(signature)) continue;
+      seen.add(signature);
+      hits.push(hit);
+      if (hits.length === 15) break;
+    }
+
     resultBox.innerHTML = hits.length ? hits.map(hit =>
       '<article class="doc"><div class="doc-head"><div><h4>' + esc(hit.title) + '</h4><div class="muted">' +
       esc(hit.section_title || 'مقطع من المرجع') + (hit.page_start ? ' · صفحة ' + esc(hit.page_start) : '') +
-      '</div></div><span class="pill">' + hit.score + '</span></div><p style="white-space:pre-wrap;line-height:1.9">' +
+      '</div></div><span class="pill">' + hit.matchedCount + '/' + Math.max(terms.length, 1) + ' كلمات</span></div><p style="white-space:pre-wrap;line-height:1.9">' +
       esc(hit.content.slice(0, 900)) + '</p></article>'
-    ).join('') : '<div class="empty">لم نعثر على نتائج مطابقة في النسخة المحفوظة محليًا.</div>';
+    ).join('') : '<div class="empty">لم نعثر على نتائج كافية الصلة. جرّب عبارة أدق أو كلمات أقل.</div>';
   }
 
   function installUI() {
