@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'icmpsr-library-v1';
+const CACHE_VERSION = 'icmpsr-library-v2';
 const APP_SHELL = [
   './',
   './index.html',
