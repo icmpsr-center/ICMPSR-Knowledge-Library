@@ -90,7 +90,61 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=async()=>{document.queryS
 $('refreshBtn').onclick=()=>currentView==='proposals'?loadProposals():loadDocs();$('search').oninput=renderDocs;
 $('askKnowledgeBtn').onclick=async()=>{const q=$('askQuestion').value.trim();if(q.length<3){status('askAnswer','اكتب سؤالًا واضحًا أولًا.','error');return}const lib=currentView==='private'?privateLib:centralLib;if(!lib)return;const btn=$('askKnowledgeBtn');btn.disabled=true;status('askAnswer','جارٍ البحث في المصادر وتجهيز الإجابة...');$('askSources').innerHTML='';try{const model=await getEmbedder();const out=await model(q,{pooling:'mean',normalize:true});const embedding=Array.from(out.data);const {data:{session}}=await db.auth.getSession();const response=await fetch(`${SUPABASE_URL}/functions/v1/knowledge-ask`,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${session.access_token}`,'apikey':SUPABASE_KEY},body:JSON.stringify({question:q,embedding,library_id:lib.id})});const result=await response.json();if(!response.ok)throw new Error(result.error||'تعذر تنفيذ السؤال');$('askAnswer').textContent=result.answer||'لا توجد إجابة.';$('askAnswer').className='status good';$('askSources').innerHTML=(result.sources||[]).map(x=>`<article class="doc"><b>[${esc(x.id)}] ${esc(x.title)}</b><div class="muted">${x.page_start?'الصفحة '+x.page_start+(x.page_end&&x.page_end!==x.page_start?' - '+x.page_end:''):'رقم الصفحة غير متاح'}</div><p>${esc(x.excerpt.slice(0,500))}</p></article>`).join('')}catch(err){status('askAnswer',err.message,'error')}finally{btn.disabled=false}};
 function highlightSearchTerms(value,query){const safe=esc(String(value||''));const terms=[...new Set(String(query||'').trim().split(/\s+/).filter(t=>t.length>1))].sort((a,b)=>b.length-a.length);if(!terms.length)return safe;const escaped=terms.map(t=>t.split('').map(ch=>'\\^$.*+?()[]{}|'.includes(ch)?'\\'+ch:ch).join(''));const re=new RegExp('('+escaped.join('|')+')','giu');return safe.replace(re,'<mark class="offline-keyword">$1</mark>')}
-$('knowledgeSearchBtn').onclick=async()=>{const q=$('search').value.trim();if(!q){status('listStatus','اكتب سؤالًا أو عبارة للبحث داخل محتوى المراجع.');return}const lib=currentView==='private'?privateLib:centralLib;if(!lib)return;const btn=$('knowledgeSearchBtn');btn.disabled=true;$('knowledgeSearchResults').innerHTML='<div class="hint">جارٍ البحث في نصوص المراجع...</div>';try{const {data:lex,error:le}=await db.rpc('search_knowledge_text',{p_query:q,p_match_count:12,p_library_id:lib.id});if(le)throw le;let sem=[];try{const model=await getEmbedder();const out=await model(q,{pooling:'mean',normalize:true});const emb=Array.from(out.data);const {data,error}=await db.rpc('search_knowledge_chunks',{p_embedding:emb,p_match_count:12,p_library_id:lib.id});if(error)throw error;sem=data||[]}catch(err){console.warn('Semantic search unavailable',err)}const all=[...(lex||[]).map(x=>({...x,match_type:'نصي'})),...sem.map(x=>({...x,rank:x.similarity,match_type:'دلالي'}))];const seen=new Set();const rows=all.filter(x=>{const k=x.chunk_id;if(seen.has(k))return false;seen.add(k);return true}).sort((a,b)=>(b.rank||0)-(a.rank||0)).slice(0,20);$('knowledgeSearchResults').innerHTML=rows.length?'<div class="panel" style="margin:10px 0"><h3>نتائج البحث داخل المحتوى</h3>'+rows.map(x=>`<article class="doc"><div class="doc-head"><b>${esc(x.title)}</b><span class="pill">${esc(x.match_type)}</span></div><div class="muted">${x.page_start?'الصفحة '+x.page_start+(x.page_end&&x.page_end!==x.page_start?' - '+x.page_end:''):'رقم الصفحة غير متاح'}</div>\${(()=>{const full=String(x.content||'');const preview=full.slice(0,700);const rest=full.slice(700);return '<p class="online-search-excerpt" style="line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere">'+highlightSearchTerms(preview,q)+'</p>'+(rest?'<details class="offline-full-text"><summary>قراءة بقية المقطع ('+rest.length+' حرف إضافي)</summary><p style="line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere">'+highlightSearchTerms(rest,q)+'</p></details>':'')})()}</article>`).join('')+'</div>':'<div class="empty">لم نعثر على مقاطع مطابقة في النصوص المفهرسة.</div>';await db.from('knowledge_access_logs').insert({user_id:user.id,action:'search',context:{query:q,library_id:lib.id,results:rows.length}})}catch(err){$('knowledgeSearchResults').innerHTML='';status('listStatus','تعذر البحث: '+(err.message||err),'error')}finally{btn.disabled=false}};
+$('knowledgeSearchBtn').onclick=async()=>{
+ const q=$('search').value.trim();
+ if(!q){status('listStatus','اكتب سؤالًا أو عبارة للبحث داخل محتوى المراجع.');return}
+ const lib=currentView==='private'?privateLib:centralLib;
+ if(!lib)return;
+ const btn=$('knowledgeSearchBtn');
+ btn.disabled=true;
+ $('knowledgeSearchResults').innerHTML='<div class="hint">جارٍ البحث النصي والدلالي ودمج النتائج...</div>';
+ try{
+  const {data:lex,error:le}=await db.rpc('search_knowledge_text',{p_query:q,p_match_count:30,p_library_id:lib.id});
+  if(le)throw le;
+  let sem=[];
+  try{
+   const model=await getEmbedder();
+   const out=await model(q,{pooling:'mean',normalize:true});
+   const emb=Array.from(out.data);
+   const {data,error}=await db.rpc('search_knowledge_chunks',{p_embedding:emb,p_match_count:30,p_library_id:lib.id});
+   if(error)throw error;
+   sem=data||[];
+  }catch(err){console.warn('Semantic search unavailable; using lexical results',err)}
+  // Reciprocal Rank Fusion combines ranked lists without comparing incompatible raw scores.
+  const fused=new Map();
+  const addRanked=(items,kind)=>{
+   (items||[]).forEach((item,index)=>{
+    const key=item.chunk_id;
+    if(!key)return;
+    const current=fused.get(key)||{...item,rrf:0,sources:new Set()};
+    current.rrf+=1/(60+index+1);
+    current.sources.add(kind);
+    if((!current.content||current.content.length<(item.content||'').length)&&item.content)current.content=item.content;
+    fused.set(key,current);
+   });
+  };
+  addRanked(lex,'نصي');
+  addRanked(sem,'دلالي');
+  const rows=[...fused.values()].sort((a,b)=>b.rrf-a.rrf).slice(0,20);
+  $('knowledgeSearchResults').innerHTML=rows.length
+   ?'<div class="panel" style="margin:10px 0"><h3>نتائج البحث داخل المحتوى</h3>'+rows.map(x=>{
+      const full=String(x.content||'');
+      const preview=full.slice(0,700);
+      const rest=full.slice(700);
+      const matchType=[...x.sources].join(' + ');
+      return '<article class="doc"><div class="doc-head"><b>'+esc(x.title)+'</b><span class="pill">'+esc(matchType)+'</span></div>'+
+       '<div class="muted">'+(x.page_start?'الصفحة '+x.page_start+(x.page_end&&x.page_end!==x.page_start?' - '+x.page_end:''):'رقم الصفحة غير متاح')+'</div>'+
+       '<p class="online-search-excerpt" style="line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere">'+highlightSearchTerms(preview,q)+'</p>'+
+       (rest?'<details class="offline-full-text"><summary>قراءة بقية المقطع ('+rest.length+' حرف إضافي)</summary><p style="line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere">'+highlightSearchTerms(rest,q)+'</p></details>':'')+
+       '</article>';
+     }).join('')+'</div>'
+   :'<div class="empty">لم نعثر على مقاطع مطابقة في النصوص المفهرسة.</div>';
+  await db.from('knowledge_access_logs').insert({user_id:user.id,action:'search',context:{query:q,library_id:lib.id,results:rows.length,ranking:'reciprocal_rank_fusion'}});
+ }catch(err){
+  $('knowledgeSearchResults').innerHTML='';
+  status('listStatus','تعذر البحث: '+(err.message||err),'error');
+ }finally{btn.disabled=false}
+};
 const PDF_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc=PDF_WORKER;
 function guessMetadata(text,fileName){
