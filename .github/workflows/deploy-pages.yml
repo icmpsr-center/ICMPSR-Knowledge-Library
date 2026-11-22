@@ -7,6 +7,10 @@ on:
       - "knowledge-library.html"
       - "archive-addon.js"
       - "password-recovery-addon.js"
+      - "offline-library-addon.js"
+      - "manifest.webmanifest"
+      - "sw.js"
+      - "icon.svg"
       - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
@@ -33,7 +37,12 @@ jobs:
           cp knowledge-library.html public/index.html
           cp archive-addon.js public/archive-addon.js
           cp password-recovery-addon.js public/password-recovery-addon.js
-          sed -i 's#</body>#<script src="archive-addon.js"></script><script src="password-recovery-addon.js"></script></body>#' public/index.html
+          cp offline-library-addon.js public/offline-library-addon.js
+          cp manifest.webmanifest public/manifest.webmanifest
+          cp sw.js public/sw.js
+          cp icon.svg public/icon.svg
+          sed -i 's#</head>#<link rel="manifest" href="./manifest.webmanifest"></head>#' public/index.html
+          sed -i 's#</body>#<script src="archive-addon.js"></script><script src="password-recovery-addon.js"></script><script src="offline-library-addon.js"></script></body>#' public/index.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
